@@ -1,11 +1,10 @@
 import * as React from 'react'
-import withStyles from "@material-ui/core/styles/withStyles"
+import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { LandingPageStyles } from "./landing-page-styles"
 
-interface LandingPageProps {
-  classes?: any
-}
+interface LandingPageProps extends WithStyles<typeof LandingPageStyles>{
 
+}
 class LandingPage extends React.Component<LandingPageProps> {
 
   get classes() {
