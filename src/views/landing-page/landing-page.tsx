@@ -1,7 +1,7 @@
 import * as React from 'react'
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { LandingPageStyles } from "./landing-page-styles"
-
+import RegisterForm from "./register-form/register-form"
 interface LandingPageProps extends WithStyles<typeof LandingPageStyles>{
 
 }
@@ -14,7 +14,7 @@ class LandingPage extends React.Component<LandingPageProps> {
   render() {
     return(
       <div className={this.classes.mainPage}>
-        Hello Typescript
+        <RegisterForm />
       </div>
     ) 
   }

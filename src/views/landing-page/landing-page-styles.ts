@@ -7,6 +7,9 @@ export const LandingPageStyles = () => createStyles({
     minHeight: "100vh",
     backgroundImage: `url(${Background})`,
     backgroundSize: "cover",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   }
 })
