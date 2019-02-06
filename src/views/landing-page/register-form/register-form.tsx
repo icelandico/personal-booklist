@@ -55,6 +55,13 @@ class LoginForm extends React.Component<RegisterFormProps> {
     });
   };
 
+  handleClickShowPassword = () => {
+    const visible = this.state.showPassword
+    this.setState({
+      showPassword: !visible
+    });
+  }
+
   render() {
     return (
       <Paper elevation={10} className={this.classes.formContainer}>
@@ -87,20 +94,19 @@ class LoginForm extends React.Component<RegisterFormProps> {
             id="outlined-adornment-password"
             //className={classNames(classes.margin, classes.textField)}
             variant="outlined"
-            type={"password"}
+            type={this.state.showPassword ? "text" : "password"}
             label="Password"
             margin="normal"
             name="password"
             value={this.state.password}
-            //value={this.state.password}
-            //onChange={this.handleChange('password')}
+            // onChange={this.handleChange('password')}
             onChange={e => this.changeCredentials(e)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="Toggle password visibility"
-                    //onClick={this.handleClickShowPassword}
+                    onClick={this.handleClickShowPassword}
                   >
                     {this.state.showPassword ? (
                       <VisibilityOff />
@@ -117,7 +123,7 @@ class LoginForm extends React.Component<RegisterFormProps> {
             type="submit"
             className={this.classes.registerButton}
           >
-            Add User
+            Register
           </Button>
         </form>
       </Paper>

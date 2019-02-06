@@ -21,15 +21,6 @@ class Navigation extends React.Component<NavigationProps> {
     return (
       <Paper elevation={10} className={this.classes.formContainer}>
         <h2>There is {userStore.userCount} users</h2>
-        <p>
-          Users name are:
-          {
-            this.props.userStore.users.map((user: any) => (
-                <h2>{user.login}</h2>
-              )
-            )
-          }
-        </p>
       </Paper>
     );
   }
