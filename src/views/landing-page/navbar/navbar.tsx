@@ -23,6 +23,14 @@ class Navigation extends React.Component<NavigationProps> {
         position="absolute"
         className={this.classes.appBar}
       >
+      <Toolbar>
+        <Typography
+          variant="h4"
+          className={this.classes.navbarTitle}
+        >
+          Book tracker
+        </Typography>
+      </Toolbar>
         <Toolbar className={this.classes.actionButtonsContainer}>
           <Button
             variant="contained"
