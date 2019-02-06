@@ -4,7 +4,6 @@ import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { NavStyles } from "./navbar-styles"
 import { inject, observer } from "mobx-react";
 import { UserStore } from "../../../stores/user-store";
-import MenuIcon from "@material-ui/icons/Menu";
 interface NavigationProps extends WithStyles<typeof NavStyles> {
   userStore?: any
 }
@@ -33,8 +32,14 @@ class Navigation extends React.Component<NavigationProps> {
           </Button>
           <Button
             variant="contained"
+            className={this.classes.actionButton}
           >
             Register
+          </Button>
+          <Button
+            variant="contained"
+          >
+            About Project
           </Button>
         </Toolbar>
       </AppBar>
