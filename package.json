@@ -2,6 +2,7 @@
   "name": "book-tracker",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000/",
   "dependencies": {
     "@material-ui/core": "^3.9.1",
     "@material-ui/icons": "^3.0.2",
@@ -13,6 +14,7 @@
     "@types/react-dom": "16.0.11",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "passport-local": "^1.0.0",
     "react": "^16.7.0",

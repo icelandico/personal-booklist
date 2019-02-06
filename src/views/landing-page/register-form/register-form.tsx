@@ -4,85 +4,126 @@ import { RegisterFormStyles } from "./register-form-styles"
 import { Paper, TextField, Button, Typography, IconButton, InputAdornment } from "@material-ui/core/";
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
+import { inject, observer } from "mobx-react"
+import { UserStore } from "../../../stores/user-store"
 
 interface RegisterFormProps extends WithStyles<typeof RegisterFormStyles> {
-
+  userStore?: any
 }
-
+@inject("userStore")
+@observer
 class LoginForm extends React.Component<RegisterFormProps> {
-
   state = {
-    showPassword: false
+    showPassword: false,
+    login: "",
+    email: "",
+    password: ""
+  };
+
+  get initialState() {
+    return {
+      showPassword: false,
+      login: "",
+      email: "",
+      password: ""
+    };
   }
 
   get classes() {
     return this.props.classes;
   }
 
+  submitUser = (e: any) => {
+    e.preventDefault();
+    const user = {
+      login: this.state.login,
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.sendUser(user);
+  };
+
+  sendUser = (user: any) => {
+    this.props.userStore.addUser(user);
+    this.setState(this.initialState);
+  };
+
+  changeCredentials = (e: any) => {
+    const value = e.target.name;
+    this.setState({
+      [value]: e.target.value
+    });
+  };
+
   render() {
     return (
-      <Paper
-       elevation={10}
-       className={this.classes.formContainer}
-      >
-        <Typography
-          variant="title"
+      <Paper elevation={10} className={this.classes.formContainer}>
+        <Typography variant="title">Register</Typography>
+        <form
+          className={this.classes.loginForm}
+          onSubmit={e => this.submitUser(e)}
         >
-          Register
-        </Typography>
-          <form className={this.classes.loginForm}>
-            <TextField
-              label="Username"
-              type="login"
-              name="login"
-              autoComplete="login"
-              margin="normal"
-              variant="outlined"
-            />
-            <TextField
-              label="Email"
-              type="email"
-              name="email"
-              autoComplete="email"
-              margin="normal"
-              variant="outlined"
-            />
-            <TextField
-              id="outlined-adornment-password"
-              //className={classNames(classes.margin, classes.textField)}
-              variant="outlined"
-              type={"password"}
-              label="Password"
-              margin="normal"
-              //value={this.state.password}
-              //onChange={this.handleChange('password')}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="Toggle password visibility"
-                      //onClick={this.handleClickShowPassword}
-                    >
-                      {this.state.showPassword ? (
-                        <VisibilityOff />
-                      ) : (
-                        <Visibility />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
-          <Button 
+          <TextField
+            label="Username"
+            type="login"
+            name="login"
+            autoComplete="login"
+            margin="normal"
+            variant="outlined"
+            value={this.state.login}
+            onChange={e => this.changeCredentials(e)}
+          />
+          <TextField
+            label="Email"
+            type="email"
+            name="email"
+            autoComplete="email"
+            margin="normal"
+            variant="outlined"
+            value={this.state.email}
+            onChange={e => this.changeCredentials(e)}
+          />
+          <TextField
+            id="outlined-adornment-password"
+            //className={classNames(classes.margin, classes.textField)}
+            variant="outlined"
+            type={"password"}
+            label="Password"
+            margin="normal"
+            name="password"
+            value={this.state.password}
+            //value={this.state.password}
+            //onChange={this.handleChange('password')}
+            onChange={e => this.changeCredentials(e)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    //onClick={this.handleClickShowPassword}
+                  >
+                    {this.state.showPassword ? (
+                      <VisibilityOff />
+                    ) : (
+                      <Visibility />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+          <Button
             variant="contained"
+            type="submit"
             className={this.classes.registerButton}
           >
-            Register
+            Add User
           </Button>
-          </form>
-        </Paper>
+        </form>
+      </Paper>
     );
   }
 }
+
 
 export default withStyles(RegisterFormStyles)(LoginForm)
