@@ -2,8 +2,11 @@ import * as React from 'react'
 import { AppBar, Typography, Toolbar, IconButton, Button } from "@material-ui/core/"
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { NavStyles } from "./navbar-styles"
-import { inject, observer } from "mobx-react";
-import User from "../../../stores/user-store";
+import { inject, observer } from "mobx-react"
+import User from "../../../stores/user-store"
+import { Link } from "react-router-dom"
+import HomePage from "./../../home/home-page"
+import classNames from "classnames"
 interface NavigationProps extends WithStyles<typeof NavStyles> {
   userStore?: User
 }
@@ -34,20 +37,27 @@ class Navigation extends React.Component<NavigationProps> {
         <Toolbar className={this.classes.actionButtonsContainer}>
           <Button
             variant="contained"
-            className={this.classes.actionButton}
+            className={classNames(this.classes.actionButton, this.classes.linkButton)}
           >
-            Login
+          <Link to="/login">
+          Login
+          </Link>
           </Button>
           <Button
             variant="contained"
-            className={this.classes.actionButton}
+            className={classNames(this.classes.actionButton, this.classes.linkButton)}
           >
+          <Link to="/register">
             Register
+          </Link>
           </Button>
           <Button
             variant="contained"
+            className={classNames(this.classes.actionButton, this.classes.linkButton)}
           >
-            About Project
+          <Link to="/about">
+            About project
+          </Link>
           </Button>
         </Toolbar>
       </AppBar>

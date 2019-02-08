@@ -3,7 +3,6 @@ import { observable, action, computed } from "mobx"
 interface UserInterface {
   login: string
   email: string
-  password: string
 }
 
 export default class User {

@@ -21,9 +21,15 @@ export const NavStyles = () =>
       justifyContent: "flex-end",
     },
     actionButton: {
-      marginRight: "1rem"
+      marginRight: "1rem",
     },
     navbarTitle: {
       fontFamily: "Cardo",
+    },
+    linkButton: {
+      "& span a": {
+        textDecoration: "none",
+        color: "#000"
+      }
     }
   });

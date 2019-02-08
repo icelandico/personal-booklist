@@ -1,14 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
+import App from './views/entrypoint/Main'
 import * as serviceWorker from './serviceWorker'
 import { Provider } from "mobx-react"
 import { UserStore } from "./stores/user-store"
+import { BrowserRouter as Router } from "react-router-dom"
 
 const Root = (
+
   <Provider userStore={UserStore}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>
 
 )

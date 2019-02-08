@@ -6,6 +6,7 @@ import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import { inject, observer } from "mobx-react"
 import User from "../../../stores/user-store"
+import { Link } from "react-router-dom"
 
 interface LoginFormProps extends WithStyles<typeof LoginFormStyles> {
   userStore?: User
@@ -43,6 +44,14 @@ class LoginForm extends React.Component<LoginFormProps> {
     this.sendUser(user);
   };
 
+  login = (e: any) => {
+    e.preventDefault()
+    const { login, email } = this.state
+
+    if (login === "Mike" && email === "mail@mail.pl") {
+    }
+  }
+
   sendUser = (user: any) => {
     this.props.userStore.addUser(user);
     this.setState(this.initialState);
@@ -68,7 +77,7 @@ class LoginForm extends React.Component<LoginFormProps> {
         <Typography variant="title">Login</Typography>
         <form
           className={this.classes.loginForm}
-          onSubmit={e => this.submitUser(e)}
+          onSubmit={e => this.login(e)}
         >
           <TextField
             label="Email or username"
