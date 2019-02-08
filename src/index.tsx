@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import * as serviceWorker from './serviceWorker'
 import { Provider } from "mobx-react"
 import { UserStore } from "./stores/user-store"
 
@@ -10,6 +10,7 @@ const Root = (
   <Provider userStore={UserStore}>
     <App />
   </Provider>
+
 )
 
 ReactDOM.render(Root, document.getElementById('root'));

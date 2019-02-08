@@ -1,18 +1,18 @@
 import * as React from 'react'
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
-import { RegisterFormStyles } from "./register-form-styles"
+import { LoginFormStyles } from "./login-form-styles"
 import { Paper, TextField, Button, Typography, IconButton, InputAdornment } from "@material-ui/core/";
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import { inject, observer } from "mobx-react"
 import User from "../../../stores/user-store"
 
-interface RegisterFormProps extends WithStyles<typeof RegisterFormStyles> {
+interface LoginFormProps extends WithStyles<typeof LoginFormStyles> {
   userStore?: User
 }
 @inject("userStore")
 @observer
-class RegisterForm extends React.Component<RegisterFormProps> {
+class LoginForm extends React.Component<LoginFormProps> {
   state = {
     showPassword: false,
     login: "",
@@ -65,23 +65,13 @@ class RegisterForm extends React.Component<RegisterFormProps> {
   render() {
     return (
       <Paper elevation={10} className={this.classes.formContainer}>
-        <Typography variant="title">Register</Typography>
+        <Typography variant="title">Login</Typography>
         <form
           className={this.classes.loginForm}
           onSubmit={e => this.submitUser(e)}
         >
           <TextField
-            label="Username"
-            type="login"
-            name="login"
-            autoComplete="login"
-            margin="normal"
-            variant="outlined"
-            value={this.state.login}
-            onChange={e => this.changeCredentials(e)}
-          />
-          <TextField
-            label="Email"
+            label="Email or username"
             type="email"
             name="email"
             autoComplete="email"
@@ -111,8 +101,8 @@ class RegisterForm extends React.Component<RegisterFormProps> {
                     {this.state.showPassword ? (
                       <VisibilityOff />
                     ) : (
-                      <Visibility />
-                    )}
+                        <Visibility />
+                      )}
                   </IconButton>
                 </InputAdornment>
               )
@@ -123,7 +113,7 @@ class RegisterForm extends React.Component<RegisterFormProps> {
             type="submit"
             className={this.classes.registerButton}
           >
-            Register
+            Login
           </Button>
         </form>
       </Paper>
@@ -132,4 +122,4 @@ class RegisterForm extends React.Component<RegisterFormProps> {
 }
 
 
-export default withStyles(RegisterFormStyles)(RegisterForm)
+export default withStyles(LoginFormStyles)(LoginForm)

@@ -3,9 +3,9 @@ import { AppBar, Typography, Toolbar, IconButton, Button } from "@material-ui/co
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { NavStyles } from "./navbar-styles"
 import { inject, observer } from "mobx-react";
-import { UserStore } from "../../../stores/user-store";
+import User from "../../../stores/user-store";
 interface NavigationProps extends WithStyles<typeof NavStyles> {
-  userStore?: any
+  userStore?: User
 }
 @inject("userStore")
 @observer
