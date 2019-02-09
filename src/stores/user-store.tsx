@@ -3,10 +3,9 @@ import { observable, action, computed } from "mobx"
 interface UserInterface {
   login: string
   email: string
-  password: string
 }
 
-class User {
+export default class User {
 
   @observable users: UserInterface[] = []
 
@@ -23,4 +22,5 @@ class User {
   }
 }
 
-export const UserStore = new User()
+const UserStore = new User()
+export { UserStore }

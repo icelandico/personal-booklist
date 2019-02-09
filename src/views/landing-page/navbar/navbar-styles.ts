@@ -11,15 +11,25 @@ export const NavStyles = () =>
     appBar: {
       backgroundColor: "#cbb7a7",
       display: "flex",
-      alignItems: "flex-end"
+      alignItems: "flex-end",
+      flexDirection: "row"
     },
     actionButtonsContainer: {
       minWidth: "15%",
       flex: 1,
       display: "flex",
-      justifyContent: "center"
+      justifyContent: "flex-end",
     },
     actionButton: {
-      marginRight: "1rem"
+      marginRight: "1rem",
+    },
+    navbarTitle: {
+      fontFamily: "Cardo",
+    },
+    linkButton: {
+      "& span a": {
+        textDecoration: "none",
+        color: "#000"
+      }
     }
   });
