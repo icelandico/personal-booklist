@@ -4,6 +4,7 @@ import { LandingPageStyles } from "./landing-page-styles"
 import RegisterForm from "./register-form/register-form"
 import LoginForm from "./login-form/login-form"
 import Navigation from "./navbar/navbar"
+import Routes from "./../../routes/Routes"
 interface LandingPageProps extends WithStyles<typeof LandingPageStyles>{
   
 }
@@ -17,7 +18,7 @@ class LandingPage extends React.Component<LandingPageProps> {
     return(
       <div className={this.classes.mainPage}>
         <Navigation />
-        <LoginForm />
+        <Routes />
       </div>
     ) 
   }
