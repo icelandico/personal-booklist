@@ -9,3 +9,9 @@ ____
 + Typescript
 + MobX
 + React-router
+
+### Main goal of this project:
++ Learn new technologies
++ Create full-stack application
++ Publish it so it can be tested
++ Organize code and project in professional way 
