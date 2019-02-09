@@ -5,6 +5,7 @@ import HomePage from "../views/home/home-page"
 import LandingPage from "../views/landing-page/landing-page"
 import RegisterForm from "../views/landing-page/register-form/register-form"
 import LoginForm from "../views/landing-page/login-form/login-form"
+import AboutPage from "../views/landing-page/about-page/about-page"
 
 interface RoutesInterface {
 }
@@ -34,11 +35,10 @@ class Routes extends React.Component<RoutesInterface, RoutesState> {
     const userLogged = this.state.loggedIn
     return(
       <Switch>
-        <Route path="/main" component={App} />
-        <Route path="/home" component={HomePage} pathname={"/home"} />
-        <Route path="/register" component={RegisterForm} pathname={"/register"} />
-        <Route path="/login" component={LoginForm} pathname={"/login"} />
-        <Route path="/" component={LoginForm} pathname={"/login"} />
+        <Route path="/register" component={RegisterForm} />
+        <Route path="/login" component={LoginForm} />
+        <Route path="/about" component={AboutPage} />
+        {/* <Route path="/" component={AboutPage} pathname={"/login"} /> */}
         {/* <Route path="*" component={PageNotFound} /> */}
       </Switch>
     )

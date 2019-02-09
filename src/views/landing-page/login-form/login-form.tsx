@@ -6,7 +6,6 @@ import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import { inject, observer } from "mobx-react"
 import User from "../../../stores/user-store"
-import { Link } from "react-router-dom"
 
 interface LoginFormProps extends WithStyles<typeof LoginFormStyles> {
   userStore?: User
