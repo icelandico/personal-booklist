@@ -1,39 +1,25 @@
-export {}
+const dbConfig = {
+  user: config.db.user,
+  password: config.db.password,
+  database: config.db.database,
+  host: config.db.host,
+  port: config.db.port,
+  max: config.db.max,
+  idleTimeoutMillis: config.db.idleTimeoutMillis,
+}
+
+const pool = new pg.Pool(dbConfig)
+pool.on('error', function (err) {
+  winston.error('idle client error', err.message, err.stack)
+})
 
 module.exports = {
-  development: {
-    client: 'pg',
-    connection: 'postgres://localhost/booktracker',
-    migrations: {
-      directory: './db/migrations'
-    },
-    seeds: {
-      directory: './db/seeds/dev'
-    },
-    useNullAsDefault: true
-  },
-
-  test: {
-    client: 'pg',
-    connection: 'postgres://localhost/booktracker_test', // postgres://postgres:postgres@localhost/
-    migrations: {
-      directory: './db/migrations'
-    },
-    seeds: {
-      directory: './db/seeds/test'
-    },
-    useNullAsDefault: true
-  },
-
-  production: {
-    client: 'pg',
-    connection: process.env.DATABASE_URL,
-    migrations: {
-      directory: './db/migrations'
-    },
-    seeds: {
-      directory: './db/seeds/production'
-    },
-    useNullAsDefault: true
+  query: (text, params, callback) => {
+    return pool.query(text, params, callback)
   }
-};
+}
+
+
+
+//postgres://localhost/booktracker_test
+//postgres://postgres:postgres@localhost
