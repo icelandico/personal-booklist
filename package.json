@@ -14,8 +14,11 @@
     "@types/react": "16.8.0",
     "@types/react-dom": "16.0.11",
     "@types/react-router-dom": "^4.3.1",
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
+    "knex": "^0.16.3",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "passport-local": "^1.0.0",
@@ -24,6 +27,7 @@
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3",
+    "ts-node-dev": "^1.0.0-pre.32",
     "typescript": "3.3.1"
   },
   "scripts": {
