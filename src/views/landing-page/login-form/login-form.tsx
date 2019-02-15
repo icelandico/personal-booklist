@@ -55,7 +55,7 @@ class LoginForm extends React.Component<LoginFormProps> {
   login = async (e: any) => {
     e.preventDefault()
     const { email, password } = this.state
-    const response = await fetch("http://localhost:4000/api/login",
+    await fetch("http://localhost:4000/api/login",
      {
         method: "POST",
         headers: {
@@ -64,9 +64,6 @@ class LoginForm extends React.Component<LoginFormProps> {
         body: JSON.stringify({ email, password })
       }
     )
-    const body = await response.json()
-    console.log(body)
-    this.setState({ response: body })
   }
 
   sendUser = (user: any) => {
