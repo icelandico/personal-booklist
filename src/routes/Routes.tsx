@@ -38,7 +38,7 @@ class Routes extends React.Component<RoutesInterface, RoutesState> {
         <Route path="/register" component={RegisterForm} />
         <Route path="/login" component={LoginForm} />
         <Route path="/about" component={AboutPage} />
-        {/* <Route path="/" component={AboutPage} pathname={"/login"} /> */}
+        <Route path="/" component={AboutPage} pathname={"/login"} />
         {/* <Route path="*" component={PageNotFound} /> */}
       </Switch>
     )

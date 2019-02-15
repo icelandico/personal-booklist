@@ -1,3 +1,7 @@
+const pg = require('pg')
+const config = require('../config')
+const winston = require('winston')
+
 const dbConfig = {
   user: config.db.user,
   password: config.db.password,
@@ -14,12 +18,8 @@ pool.on('error', function (err) {
 })
 
 module.exports = {
+  pool,
   query: (text, params, callback) => {
     return pool.query(text, params, callback)
   }
 }
-
-
-
-//postgres://localhost/booktracker_test
-//postgres://postgres:postgres@localhost

@@ -13,11 +13,12 @@ interface LoginFormProps extends WithStyles<typeof LoginFormStyles> {
 @inject("userStore")
 @observer
 class LoginForm extends React.Component<LoginFormProps> {
-  state = {
+  state: any = {
     showPassword: false,
     login: "",
     email: "",
-    password: ""
+    password: "",
+    response: ""
   };
 
   get initialState() {
@@ -43,21 +44,38 @@ class LoginForm extends React.Component<LoginFormProps> {
     this.sendUser(user);
   };
 
-  login = (e: any) => {
-    e.preventDefault()
-    const { login, email } = this.state
+  // login = (e: any) => {
+  //   e.preventDefault()
+  //   const { login, email } = this.state
 
-    if (login === "Mike" && email === "mail@mail.pl") {
-    }
+  //   if (login === "Mike" && email === "mail@mail.pl") {
+  //   }
+  // }
+
+  login = async (e: any) => {
+    e.preventDefault()
+    const { email, password } = this.state
+    const response = await fetch("http://localhost:4000/api/login",
+     {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password })
+      }
+    )
+    const body = await response.json()
+    console.log(body)
+    this.setState({ response: body })
   }
 
   sendUser = (user: any) => {
-    this.props.userStore.addUser(user);
-    this.setState(this.initialState);
+    this.props.userStore.addUser(user)
+    this.setState(this.initialState)
   };
 
   changeCredentials = (e: any) => {
-    const value = e.target.name;
+    const value = e.target.name
     this.setState({
       [value]: e.target.value
     });
