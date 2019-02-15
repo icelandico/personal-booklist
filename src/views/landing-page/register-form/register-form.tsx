@@ -17,7 +17,8 @@ class RegisterForm extends React.Component<RegisterFormProps> {
     showPassword: false,
     login: "",
     email: "",
-    password: ""
+    password: "",
+    repeatedPassword: ""
   };
 
   get initialState() {
@@ -25,7 +26,8 @@ class RegisterForm extends React.Component<RegisterFormProps> {
       showPassword: false,
       login: "",
       email: "",
-      password: ""
+      password: "",
+      repeatedPassword: ""
     };
   }
 
@@ -113,6 +115,34 @@ class RegisterForm extends React.Component<RegisterFormProps> {
                     ) : (
                       <Visibility />
                     )}
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+          <TextField
+            id="outlined-adornment-password"
+            //className={classNames(classes.margin, classes.textField)}
+            variant="outlined"
+            type={this.state.showPassword ? "text" : "password"}
+            label="Repeat password"
+            margin="normal"
+            name="password"
+            value={this.state.repeatedPassword}
+            // onChange={this.handleChange('password')}
+            onChange={e => this.changeCredentials(e)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                  >
+                    {this.state.showPassword ? (
+                      <VisibilityOff />
+                    ) : (
+                        <Visibility />
+                      )}
                   </IconButton>
                 </InputAdornment>
               )
