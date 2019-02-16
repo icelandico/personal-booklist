@@ -120,7 +120,7 @@ class RegisterForm extends React.Component<RegisterFormProps> {
               )
             }}
           />
-          <TextField
+          {/* <TextField
             id="outlined-adornment-password"
             //className={classNames(classes.margin, classes.textField)}
             variant="outlined"
@@ -147,7 +147,7 @@ class RegisterForm extends React.Component<RegisterFormProps> {
                 </InputAdornment>
               )
             }}
-          />
+          /> */}
           <Button
             variant="contained"
             type="submit"
