@@ -28,7 +28,7 @@ client.connect()
   .catch("Failed to connect to DB")
 
 
-app.post("/api/login", (req, res) => {
+app.post("/api/register", (req, res) => {
   const { email, password } = req.body
   bcrypt.hash(password, saltRounds, (err,hash) => {
     const INSERT_USER_QUERY = `

@@ -55,7 +55,7 @@ class LoginForm extends React.Component<LoginFormProps> {
   login = async (e: any) => {
     e.preventDefault()
     const { email, password } = this.state
-    await fetch("http://localhost:4000/api/login",
+    await fetch("http://localhost:4000/api/register",
      {
         method: "POST",
         headers: {
