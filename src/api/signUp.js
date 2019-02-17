@@ -1,4 +1,4 @@
-const db = require("./db_config")
+const db = require("./config")
 const pgp = require('pg-promise')(initOptions)
 
 const createUser = (username, password) => {
