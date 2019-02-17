@@ -6,7 +6,7 @@ import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import { inject, observer } from "mobx-react"
 import User from "../../../stores/user-store"
-
+import { Redirect } from "react-router-dom"
 interface LoginFormProps extends WithStyles<typeof LoginFormStyles> {
   userStore?: User
 }
@@ -51,11 +51,28 @@ class LoginForm extends React.Component<LoginFormProps> {
   //   }
   // }
 
-  login = (e: any) => {
+   async login (e: any): Promise<any> {
     e.preventDefault()
     const { email, password } = this.state
-    this.props.userStore.signUp(email, password)
+    const response = await this.props.userStore.signUp(email, password)
+    if (response === null) {
+      console.log("Something went wrong...")
+    } 
+    else {
+      this.props.userStore.loggedIn = true
+    }
   }
+
+  // async login(data: { email: string, password: string }): Promise<any> {
+  //   // self.setToken("token")
+  //   // return null
+  //   const response = await getEnv(self).api.account.login(data)
+  //   if (response.kind == "ok") {
+  //     self.setToken(response.token)
+  //     await (getParent(self) as any).init()
+  //   }
+  //   return response.kind == "ok" ? null : ["invalid_credentials"]
+  // },
 
   sendUser = (user: any) => {
     this.props.userStore.addUser(user)
@@ -79,7 +96,7 @@ class LoginForm extends React.Component<LoginFormProps> {
   render() {
     return (
       <Paper elevation={10} className={this.classes.formContainer}>
-        <Typography variant="title">Login</Typography>
+        <Typography variant="title">Enter credentials</Typography>
         <form
           className={this.classes.loginForm}
           onSubmit={e => this.login(e)}
@@ -127,7 +144,7 @@ class LoginForm extends React.Component<LoginFormProps> {
             type="submit"
             className={this.classes.registerButton}
           >
-            Login
+           Login
           </Button>
         </form>
       </Paper>

@@ -1,22 +1,24 @@
-import { observable, action, computed } from "mobx"
+import { observable, action } from "mobx"
 
 interface UserInterface {
   login: string
   email: string,
   username: string,
-  password: string
+  password: string,
 }
 
 export default class User {
 
   @observable users: UserInterface[] = []
 
+  @observable loggedIn: boolean = false
+
   @action addUser = (newUser: any) => {
     this.users.push(newUser)
   }
 
   @action signUp = async (email: string, password: string) => {
-    await fetch("http://localhost:4000/api/register",
+    fetch("http://localhost:4000/api/register",
       {
         method: "POST",
         headers: {
@@ -24,16 +26,13 @@ export default class User {
         },
         body: JSON.stringify({ email, password })
       }
-    )
+    ).then(res => res.status)
   }
 
   @action logMe = () => {
     console.log("MobX works!");
   }
 
-  @computed get userCount() {
-    return this.users.length
-  }
 }
 
 const UserStore = new User()
