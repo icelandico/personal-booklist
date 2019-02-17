@@ -18,7 +18,6 @@ class LoginForm extends React.Component<LoginFormProps> {
     login: "",
     email: "",
     password: "",
-    response: ""
   };
 
   get initialState() {

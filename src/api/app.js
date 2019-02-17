@@ -22,7 +22,7 @@ app.post("/api/register", (req, res) => {
     const INSERT_USER_QUERY = `
     INSERT INTO "Users" (username, password) VALUES('${email}', '${hash}')
   `
-    client.query(INSERT_USER_QUERY)
+    db.query(INSERT_USER_QUERY)
   })
 })
 
