@@ -24,16 +24,17 @@ const hashPassword = (password) => {
   )
 }
 
-const checkIfRegistered = email => {
+const checkIfRegistered = async email => {
   const query = `SELECT id FROM "Users" WHERE username=$1`
-  const response = config.db.query(query, [email])
-  return response
+  const response = await config.db.query(query, [email])
+  const exists = response.rowCount > 0
+  return exists
 }
 
 const createUser = (request, response) => {
   const user = request.body
   checkIfRegistered(user.email)
-    .then(res => res.rowCount > 0 ? console.log("Already exists") : console.log("NO"))
+    .then(res => response.send({ userExists: res }))
   // hashPassword(user.password)
   //   .then(pass => console.log(pass))
 }

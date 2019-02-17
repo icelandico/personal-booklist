@@ -43,22 +43,14 @@ class LoginForm extends React.Component<LoginFormProps> {
     this.sendUser(user);
   };
 
-  // login = (e: any) => {
-  //   e.preventDefault()
-  //   const { login, email } = this.state
-
-  //   if (login === "Mike" && email === "mail@mail.pl") {
-  //   }
-  // }
-
    async login (e: any): Promise<any> {
     e.preventDefault()
     const { email, password } = this.state
     const response = await this.props.userStore.signUp(email, password)
-    if (response === null) {
-      console.log("Something went wrong...")
-    } 
-    else {
+    const data = this.props.userStore.fetchData
+    if (data.userExists) {
+      alert("User already exists!")
+    } else {
       this.props.userStore.loggedIn = true
     }
   }

@@ -13,12 +13,14 @@ export default class User {
 
   @observable loggedIn: boolean = false
 
+  @observable fetchData: any = ""
+
   @action addUser = (newUser: any) => {
     this.users.push(newUser)
   }
 
   @action signUp = async (email: string, password: string) => {
-    fetch("http://localhost:4000/api/register",
+    await fetch("http://localhost:4000/api/register",
       {
         method: "POST",
         headers: {
@@ -26,7 +28,11 @@ export default class User {
         },
         body: JSON.stringify({ email, password })
       }
-    ).then(res => res.status)
+    )
+    .then(res => res.json())
+    .then(data => {
+      this.fetchData = data
+    })
   }
 
   @action logMe = () => {
