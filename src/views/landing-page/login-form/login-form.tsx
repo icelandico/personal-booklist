@@ -52,18 +52,10 @@ class LoginForm extends React.Component<LoginFormProps> {
   //   }
   // }
 
-  login = async (e: any) => {
+  login = (e: any) => {
     e.preventDefault()
     const { email, password } = this.state
-    await fetch("http://localhost:4000/api/register",
-     {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password })
-      }
-    )
+    this.props.userStore.signUp(email, password)
   }
 
   sendUser = (user: any) => {
