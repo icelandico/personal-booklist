@@ -1,10 +1,10 @@
+const db = require("./db_config")
 const express = require("express")
 const app = express()
 const PORT = process.env.PORT || 4000
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const passport = require("passport")
-const { Client } = require("pg")
 const bcrypt = require("bcrypt")
 const saltRounds = 10
 
@@ -15,18 +15,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 // Config DB
-const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'booktracker',
-  password: 'postgres',
-  port: 5432,
-})
-
-client.connect()
-  .then(() => console.log("Client connected"))
-  .catch("Failed to connect to DB")
-
 
 app.post("/api/register", (req, res) => {
   const { email, password } = req.body
@@ -36,7 +24,6 @@ app.post("/api/register", (req, res) => {
   `
     client.query(INSERT_USER_QUERY)
   })
-  console.log("User registered")
 })
 
 app.listen(PORT, function () {

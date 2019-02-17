@@ -1,25 +1,15 @@
-const pg = require('pg')
-const config = require('../config')
-const winston = require('winston')
+const { Client } = require('pg')
 
-const dbConfig = {
-  user: config.db.user,
-  password: config.db.password,
-  database: config.db.database,
-  host: config.db.host,
-  port: config.db.port,
-  max: config.db.max,
-  idleTimeoutMillis: config.db.idleTimeoutMillis,
-}
-
-const pool = new pg.Pool(dbConfig)
-pool.on('error', function (err) {
-  winston.error('idle client error', err.message, err.stack)
+const client = new Client({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'booktracker',
+  password: 'postgres',
+  port: 5432,
 })
 
-module.exports = {
-  pool,
-  query: (text, params, callback) => {
-    return pool.query(text, params, callback)
-  }
-}
+client.connect()
+  .then(() => console.log("Client connected"))
+  .catch("Failed to connect to DB")
+
+module.exports = client
