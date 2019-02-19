@@ -38,17 +38,13 @@ const checkIfRegistered = async email => {
   return exists
 }
 
-const registerProcedure = (request, response) => {
+const registerProcedure = async (request, response) => {
   const user = request.body
-  checkIfRegistered(user.email)
-    .then(res => {
-      if (!res) {
-        response.send({ userExists: res })
-      }
-    })
-    .then(createUser(user))
-  // hashPassword(user.password)
-  //   .then(pass => console.log(pass))
+  const alreadyRegistered = await checkIfRegistered(user.email)
+  response.send({ userExists: alreadyRegistered })
+  if (!alreadyRegistered) {
+    createUser(user)
+  }
 }
 
 module.exports = { registerProcedure }

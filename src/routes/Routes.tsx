@@ -21,10 +21,6 @@ interface RoutesState {
 @observer
 class Routes extends React.Component<RoutesInterface, RoutesState> {
 
-  state = {
-    loggedIn: false
-  }
-
   authorizedRoutes = () => {
     return (
       <Switch>
