@@ -27,7 +27,7 @@ app.use(cors())
 //   })
 // })
 
-app.post("/api/register", User.createUser)
+app.post("/api/register", User.registerProcedure)
 
 app.listen(PORT, function () {
   console.log(`Example app listening on port ${PORT}!`)

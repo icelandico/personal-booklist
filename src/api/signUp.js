@@ -3,16 +3,27 @@ const bcrypt = require("bcrypt")
 const saltRounds = 10
 const jwt = require("jwt-simple")
 
-// const createUser = (username, password) => {
-//   const insertUserQuery = `
-//   INSERT INTO "users"
-//   (username, password)
-//   VALUES('${username}', '${password}')
-//   `
-//   config.db.query(insertUserQuery)
-// }
+const createUser = (user) => {
+  const newUser = {
+    username: user.email,
+    password: ""
+  }
+  hashPassword(user.password)
+    .then(hashedPass => {
+      newUser.password = hashedPass
+    })
+    .then(() => {
+      const insertUserQuery = `
+        INSERT INTO "users"
+        (username, password)
+        VALUES('${newUser.username}', '${newUser.password}')
+        `
+      config.db.query(insertUserQuery)
+    }
+  )
+}
 
-const hashPassword = (password) => {
+const hashPassword = async (password) => {
   return new Promise((resolve, reject) =>
     bcrypt.hash(password, saltRounds, (err, hash) => {
       return err ? reject(err) : resolve(hash)
@@ -27,13 +38,17 @@ const checkIfRegistered = async email => {
   return exists
 }
 
-const createUser = (request, response) => {
+const registerProcedure = (request, response) => {
   const user = request.body
   checkIfRegistered(user.email)
-    .then(res => response.send({ userExists: res }))
-
+    .then(res => {
+      if (!res) {
+        response.send({ userExists: res })
+      }
+    })
+    .then(createUser(user))
   // hashPassword(user.password)
   //   .then(pass => console.log(pass))
 }
 
-module.exports = { createUser }
+module.exports = { registerProcedure }
