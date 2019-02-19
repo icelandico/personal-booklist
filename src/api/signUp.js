@@ -3,17 +3,13 @@ const bcrypt = require("bcrypt")
 const saltRounds = 10
 const jwt = require("jwt-simple")
 
-// const pgp = require('pg-promise')(initOptions)
-
-
 // const createUser = (username, password) => {
-//   const query = `
-//   INSERT INTO "Users"
+//   const insertUserQuery = `
+//   INSERT INTO "users"
 //   (username, password)
-//   VALUES($1 $2)
-//   RETURNING *
+//   VALUES('${username}', '${password}')
 //   `
-//   return db.one(query, [username, password])
+//   config.db.query(insertUserQuery)
 // }
 
 const hashPassword = (password) => {
@@ -25,7 +21,7 @@ const hashPassword = (password) => {
 }
 
 const checkIfRegistered = async email => {
-  const query = `SELECT id FROM "Users" WHERE username=$1`
+  const query = `SELECT id FROM "users" WHERE username=$1`
   const response = await config.db.query(query, [email])
   const exists = response.rowCount > 0
   return exists
@@ -35,6 +31,7 @@ const createUser = (request, response) => {
   const user = request.body
   checkIfRegistered(user.email)
     .then(res => response.send({ userExists: res }))
+
   // hashPassword(user.password)
   //   .then(pass => console.log(pass))
 }
