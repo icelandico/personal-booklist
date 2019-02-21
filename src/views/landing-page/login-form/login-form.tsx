@@ -55,17 +55,6 @@ class LoginForm extends React.Component<LoginFormProps> {
     }
   }
 
-  // async login(data: { email: string, password: string }): Promise<any> {
-  //   // self.setToken("token")
-  //   // return null
-  //   const response = await getEnv(self).api.account.login(data)
-  //   if (response.kind == "ok") {
-  //     self.setToken(response.token)
-  //     await (getParent(self) as any).init()
-  //   }
-  //   return response.kind == "ok" ? null : ["invalid_credentials"]
-  // },
-
   sendUser = (user: any) => {
     this.props.userStore.addUser(user)
     this.setState(this.initialState)
