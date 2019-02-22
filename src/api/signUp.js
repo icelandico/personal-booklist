@@ -6,21 +6,32 @@ const jwt = require("jwt-simple")
 const createUser = (user) => {
   const newUser = {
     username: user.email,
-    password: ""
+    password: "",
+    token: ""
   }
   hashPassword(user.password)
     .then(hashedPass => {
       newUser.password = hashedPass
     })
+    .then(() => createToken(newUser.username))
+    .then(token => 
+      newUser.token = token
+    )
     .then(() => {
       const insertUserQuery = `
         INSERT INTO "users"
-        (username, password)
-        VALUES('${newUser.username}', '${newUser.password}')
+        (username, password, token)
+        VALUES('${newUser.username}', '${newUser.password}', '${newUser.token}')
         `
       config.db.query(insertUserQuery)
     }
   )
+}
+
+const createToken = (username) => {
+  const timestamp = new Date().getTime()
+  const token = jwt.encode({ sub: username, iat: timestamp }, config.secret)
+  return token
 }
 
 const hashPassword = async (password) => {
