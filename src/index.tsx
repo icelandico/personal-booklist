@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './views/entrypoint/Main'
+import App from './views/pages/entrypoint/Main'
 import * as serviceWorker from './serviceWorker'
 import { Provider } from "mobx-react"
 import { UserStore } from "./stores/user-store"

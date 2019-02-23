@@ -5,10 +5,10 @@ import { Paper, TextField, Button, Typography, IconButton, InputAdornment } from
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import { inject, observer } from "mobx-react"
-import User from "../../../stores/user-store"
-import { Redirect } from "react-router-dom"
+import User from "../../../../stores/user-store"
+
 interface LoginFormProps extends WithStyles<typeof LoginFormStyles> {
-  userStore?: User
+  userStore?: User,
 }
 @inject("userStore")
 @observer

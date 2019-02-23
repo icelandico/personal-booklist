@@ -2,7 +2,7 @@ import * as React from 'react'
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { LandingPageStyles } from "./landing-page-styles"
 import Navigation from "./navbar/navbar"
-import Routes from "./../../routes/Routes"
+import Routes from "./../../../routes/Routes"
 interface LandingPageProps extends WithStyles<typeof LandingPageStyles>{
   
 }

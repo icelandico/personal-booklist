@@ -3,7 +3,7 @@ import { AppBar, Typography, Toolbar, IconButton, Button } from "@material-ui/co
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { NavStyles } from "./navbar-styles"
 import { inject, observer } from "mobx-react"
-import User from "../../../stores/user-store"
+import User from "../../../../stores/user-store"
 import { Link } from "react-router-dom"
 import HomePage from "./../../home/home-page"
 import classNames from "classnames"

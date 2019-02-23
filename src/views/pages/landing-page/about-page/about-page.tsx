@@ -3,7 +3,7 @@ import { Paper, Typography } from "@material-ui/core/"
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { AboutPageStyles } from "./about-page-styles"
 import { inject, observer } from "mobx-react"
-import User from "../../../stores/user-store"
+import User from "../../../../stores/user-store"
 import classNames from "classnames"
 
 interface AboutPageProps extends WithStyles<typeof AboutPageStyles> {

@@ -5,7 +5,7 @@ import { Paper, TextField, Button, Typography, IconButton, InputAdornment } from
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import { inject, observer } from "mobx-react"
-import User from "../../../stores/user-store"
+import User from "../../../../stores/user-store"
 
 interface RegisterFormProps extends WithStyles<typeof RegisterFormStyles> {
   userStore?: User
