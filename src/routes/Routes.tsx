@@ -16,7 +16,7 @@ interface RoutesInterface extends RouteComponentProps<any> {
 
 interface RoutesState {
   loggedIn: boolean
-}
+} 
 @inject("userStore")
 @observer
 class Routes extends React.Component<RoutesInterface, RoutesState> {

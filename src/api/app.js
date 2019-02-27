@@ -1,13 +1,9 @@
-const config = require("./config")
 const express = require("express")
 const app = express()
 const PORT = process.env.PORT || 4000
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const passport = require("passport")
-const bcrypt = require("bcrypt")
-const saltRounds = 10
-const jwt = require("jwt-simple")
 const User = require("./signUp")
 
 app.use(passport.initialize())
