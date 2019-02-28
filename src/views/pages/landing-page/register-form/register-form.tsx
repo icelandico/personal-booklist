@@ -35,16 +35,6 @@ class RegisterForm extends React.Component<RegisterFormProps> {
     return this.props.classes;
   }
 
-  // submitUser = (e: any) => {
-  //   e.preventDefault();
-  //   const user = {
-  //     username: this.state.login,
-  //     email: this.state.email,
-  //     password: this.state.password
-  //   };
-  //   this.sendUser(user);
-  // };
-
   async signUpUser(e: any): Promise<any> {
     e.preventDefault()
     const { username, email, password } = this.state
@@ -56,11 +46,6 @@ class RegisterForm extends React.Component<RegisterFormProps> {
       this.props.userStore.loggedIn = true
     }
   }
-
-  sendUser = (user: any) => {
-    this.props.userStore.addUser(user);
-    this.setState(this.initialState);
-  };
 
   changeCredentials = (e: any) => {
     const value = e.target.name;
