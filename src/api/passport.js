@@ -1,7 +1,18 @@
-const passport = require("passport-local")
+const LocalStrategy = require("passport-local")
+const passport = require("passport")
+const config = require("./config")
 
-passport.use(new LocalStrategy((username, password, cb) => {
-  db.query('SELECT id, username, password, type FROM users WHERE username=$1', [username], (err, result) => {
+config.app.use(passport.initialize());
+config.app.use(passport.session());
+
+const loginQuery = `
+  SELECT id 
+  FROM "users"
+  WHERE username=$1 OR email=$1
+  `
+
+const passportAuthenticate = passport.use(new LocalStrategy((login, password, done) => {
+  config.db.query(loginQuery, [login, password], (err, result) => {
     if (err) {
       winston.error('Error when selecting user on login', err)
       return cb(err)
