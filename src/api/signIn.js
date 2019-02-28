@@ -49,13 +49,14 @@ const checkIfRegistered = async email => {
   return exists
 }
 
-const registerProcedure = async (request, response) => {
-  const user = request.body
-  const alreadyRegistered = await checkIfRegistered(user.email)
-  response.send({ userExists: alreadyRegistered })
-  if (!alreadyRegistered) {
-    createUser(user)
-  }
+const loginProcedure = async (request, response) => {
+  console.log(request.body)
+  // const user = request.body
+  // const alreadyRegistered = await checkIfRegistered(user.email)
+  // response.send({ userExists: alreadyRegistered })
+  // if (!alreadyRegistered) {
+  //   createUser(user)
+  // }
 }
 
-module.exports = { registerProcedure }
+module.exports = { loginProcedure }

@@ -8,7 +8,7 @@ import { inject, observer } from "mobx-react"
 import User from "../../../../stores/user-store"
 
 interface LoginFormProps extends WithStyles<typeof LoginFormStyles> {
-  userStore?: User,
+  userStore?: User
 }
 @inject("userStore")
 @observer
@@ -17,7 +17,7 @@ class LoginForm extends React.Component<LoginFormProps> {
     showPassword: false,
     login: "",
     email: "",
-    password: "",
+    password: ""
   };
 
   get initialState() {
@@ -30,48 +30,33 @@ class LoginForm extends React.Component<LoginFormProps> {
   }
 
   get classes() {
-    return this.props.classes;
+    return this.props.classes
   }
-
-  submitUser = (e: any) => {
-    e.preventDefault();
-    const user = {
-      login: this.state.login,
-      email: this.state.email,
-      password: this.state.password
-    };
-    this.sendUser(user);
-  };
 
    async login (e: any): Promise<any> {
     e.preventDefault()
-    const { username, email, password } = this.state
-    const response = await this.props.userStore.signIn(username, email, password)
+    const { login, password } = this.state
+    const response = await this.props.userStore.signIn(login, password)
     const data = this.props.userStore.fetchData
     if (data.userExists) {
-      alert("User already exists!")
+      alert("Wrong credentials!")
     } else {
       this.props.userStore.loggedIn = true
     }
   }
 
-  sendUser = (user: any) => {
-    this.props.userStore.addUser(user)
-    this.setState(this.initialState)
-  };
-
   changeCredentials = (e: any) => {
     const value = e.target.name
     this.setState({
       [value]: e.target.value
-    });
-  };
+    })
+  }
 
   handleClickShowPassword = () => {
     const visible = this.state.showPassword
     this.setState({
       showPassword: !visible
-    });
+    })
   }
 
   render() {
@@ -84,12 +69,12 @@ class LoginForm extends React.Component<LoginFormProps> {
         >
           <TextField
             label="Email or username"
-            type="email"
-            name="email"
+            type="text"
+            name="login"
             autoComplete="email"
             margin="normal"
             variant="outlined"
-            value={this.state.email}
+            value={this.state.login}
             onChange={e => this.changeCredentials(e)}
           />
           <TextField
@@ -129,7 +114,7 @@ class LoginForm extends React.Component<LoginFormProps> {
           </Button>
         </form>
       </Paper>
-    );
+    )
   }
 }
 

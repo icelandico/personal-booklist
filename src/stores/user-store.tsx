@@ -34,19 +34,20 @@ export default class User {
     })
   }
 
-  @action signIn = async (username: string, email: string, password: string) => {
+  @action signIn = async (login: string, password: string) => {
     await fetch("http://localhost:4000/api/login",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, email, password })
+        body: JSON.stringify({ login, password })
       }
     )
       .then(res => res.json())
       .then(data => {
-        this.fetchData = data
+        console.log(data)
+        //this.fetchData = data
       })
   }
 

@@ -4,7 +4,8 @@ const PORT = process.env.PORT || 4000
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const passport = require("passport")
-const User = require("./signUp")
+const Register = require("./signUp")
+const Login = require("./signIn")
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -23,7 +24,9 @@ app.use(cors())
 //   })
 // })
 
-app.post("/api/register", User.registerProcedure)
+app.post("/api/register", Register.registerProcedure)
+
+app.post("/api/login", Login.loginProcedure)
 
 app.listen(PORT, function () {
   console.log(`Example app listening on port ${PORT}!`)
