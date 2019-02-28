@@ -1,23 +1,21 @@
-const LocalStrategy = require("passport-local")
+const LocalStrategy = require("passport-local").Strategy
 const passport = require("passport")
 const config = require("./config")
 
-config.app.use(passport.initialize());
-config.app.use(passport.session());
+config.app.use(passport.initialize())
+config.app.use(passport.session())
 
 const loginQuery = `
-  SELECT id 
+  SELECT * 
   FROM "users"
   WHERE username=$1 OR email=$1
   `
 
 const passportAuthenticate = passport.use(new LocalStrategy((login, password, done) => {
-  config.db.query(loginQuery, [login, password], (err, result) => {
+  config.db.query(loginQuery, [login], (err, result) => {
     if (err) {
-      winston.error('Error when selecting user on login', err)
-      return cb(err)
+      return done('Error with username', err)
     }
-
     if (result.rows.length > 0) {
       const first = result.rows[0]
       bcrypt.compare(password, first.password, function (err, res) {
@@ -48,3 +46,9 @@ passport.deserializeUser((id, cb) => {
     cb(null, results.rows[0])
   })
 })
+
+const authMethods = {
+  auth: passportAuthenticate
+}
+
+module.exports = authMethods
