@@ -35,7 +35,7 @@ export default class User {
   }
 
   @action signIn = async (username: string, email: string, password: string) => {
-    await fetch("http://localhost:4000/api/register",
+    await fetch("http://localhost:4000/api/login",
       {
         method: "POST",
         headers: {
