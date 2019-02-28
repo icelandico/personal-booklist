@@ -15,7 +15,7 @@ interface RegisterFormProps extends WithStyles<typeof RegisterFormStyles> {
 class RegisterForm extends React.Component<RegisterFormProps> {
   state = {
     showPassword: false,
-    login: "",
+    username: "",
     email: "",
     password: "",
     repeatedPassword: ""
@@ -24,7 +24,7 @@ class RegisterForm extends React.Component<RegisterFormProps> {
   get initialState() {
     return {
       showPassword: false,
-      login: "",
+      username: "",
       email: "",
       password: "",
       repeatedPassword: ""
@@ -35,15 +35,27 @@ class RegisterForm extends React.Component<RegisterFormProps> {
     return this.props.classes;
   }
 
-  submitUser = (e: any) => {
-    e.preventDefault();
-    const user = {
-      login: this.state.login,
-      email: this.state.email,
-      password: this.state.password
-    };
-    this.sendUser(user);
-  };
+  // submitUser = (e: any) => {
+  //   e.preventDefault();
+  //   const user = {
+  //     username: this.state.login,
+  //     email: this.state.email,
+  //     password: this.state.password
+  //   };
+  //   this.sendUser(user);
+  // };
+
+  async signUpUser(e: any): Promise<any> {
+    e.preventDefault()
+    const { username, email, password } = this.state
+    const response = await this.props.userStore.signUp(username, email, password)
+    const data = this.props.userStore.fetchData
+    if (data.userExists) {
+      alert("User already exists!")
+    } else {
+      this.props.userStore.loggedIn = true
+    }
+  }
 
   sendUser = (user: any) => {
     this.props.userStore.addUser(user);
@@ -70,7 +82,7 @@ class RegisterForm extends React.Component<RegisterFormProps> {
         <Typography variant="title">Register</Typography>
         <form
           className={this.classes.loginForm}
-          onSubmit={e => this.submitUser(e)}
+          onSubmit={e => this.signUpUser(e)}
         >
           <TextField
             label="Username"
