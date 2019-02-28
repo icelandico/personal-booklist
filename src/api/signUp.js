@@ -43,16 +43,20 @@ const hashPassword = async (password) => {
   )
 }
 
-const checkIfRegistered = async username => {
-  const query = `SELECT id FROM "users" WHERE username=$1`
-  const response = await config.db.query(query, [username])
+const checkIfRegistered = async (username, email) => {
+  const query = `
+  SELECT id 
+  FROM "users"
+  WHERE username=$1 OR email=$2
+  `
+  const response = await config.db.query(query, [username, email])
   const exists = response.rowCount > 0
   return exists
 }
 
 const registerProcedure = async (request, response) => {
   const user = request.body
-  const alreadyRegistered = await checkIfRegistered(user.username)
+  const alreadyRegistered = await checkIfRegistered(user.username, user.email)
   response.send({ userExists: alreadyRegistered })
   if (!alreadyRegistered) {
     createUser(user)
