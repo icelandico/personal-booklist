@@ -46,8 +46,7 @@ export default class User {
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data)
-        //this.fetchData = data
+        this.fetchData = data
       })
   }
 

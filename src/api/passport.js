@@ -1,3 +1,5 @@
+const passport = require("passport-local")
+
 passport.use(new LocalStrategy((username, password, cb) => {
   db.query('SELECT id, username, password, type FROM users WHERE username=$1', [username], (err, result) => {
     if (err) {
