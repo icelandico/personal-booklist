@@ -1,9 +1,8 @@
 import { observable, action } from "mobx"
 
 interface UserInterface {
-  login: string
-  email: string,
   username: string,
+  email: string,
   password: string,
 }
 
@@ -19,14 +18,14 @@ export default class User {
     this.users.push(newUser)
   }
 
-  @action signUp = async (email: string, password: string) => {
+  @action signUp = async (username: string, email: string, password: string) => {
     await fetch("http://localhost:4000/api/register",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username, email, password })
       }
     )
     .then(res => res.json())
