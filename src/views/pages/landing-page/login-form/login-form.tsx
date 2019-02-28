@@ -45,8 +45,8 @@ class LoginForm extends React.Component<LoginFormProps> {
 
    async login (e: any): Promise<any> {
     e.preventDefault()
-    const { email, password } = this.state
-    const response = await this.props.userStore.signUp(email, password)
+    const { username, email, password } = this.state
+    const response = await this.props.userStore.signIn(username, email, password)
     const data = this.props.userStore.fetchData
     if (data.userExists) {
       alert("User already exists!")

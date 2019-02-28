@@ -87,11 +87,11 @@ class RegisterForm extends React.Component<RegisterFormProps> {
           <TextField
             label="Username"
             type="login"
-            name="login"
+            name="username"
             autoComplete="login"
             margin="normal"
             variant="outlined"
-            value={this.state.login}
+            value={this.state.username}
             onChange={e => this.changeCredentials(e)}
           />
           <TextField

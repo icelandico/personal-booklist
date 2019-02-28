@@ -34,6 +34,22 @@ export default class User {
     })
   }
 
+  @action signIn = async (username: string, email: string, password: string) => {
+    await fetch("http://localhost:4000/api/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password })
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        this.fetchData = data
+      })
+  }
+
   @action logMe = () => {
     console.log("MobX works!");
   }
