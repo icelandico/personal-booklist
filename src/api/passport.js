@@ -1,6 +1,7 @@
 const LocalStrategy = require("passport-local").Strategy
 const passport = require("passport")
 const config = require("./config")
+const bcrypt = require("bcrypt")
 
 config.app.use(passport.initialize())
 config.app.use(passport.session())
@@ -11,14 +12,15 @@ const loginQuery = `
   WHERE username=$1 OR email=$1
   `
 
-const passportAuthenticate = passport.use(new LocalStrategy((login, password, done) => {
+const passportAuthenticate = passport.use(new LocalStrategy(
+  (login, password, done) => {
   config.db.query(loginQuery, [login], (err, result) => {
     if (err) {
       return done('Error with username', err)
     }
     if (result.rows.length > 0) {
-      const first = result.rows[0]
-      bcrypt.compare(password, first.password, function (err, res) {
+      const user = result.rows[0]
+      bcrypt.compare(password, user.password, function (err, res) {
         if (res) {
           cb(null, { id: first.id, username: first.username, type: first.type })
         } else {
