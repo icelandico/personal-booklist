@@ -4,21 +4,13 @@ const cors = require("cors")
 const Register = require("./signUp")
 const Login = require("./signIn")
 const config = require("./config")
+const passport = require("passport")
+const LocalStrategy = require("passport-local").Strategy
 
 config.app.use(bodyParser.json())
 config.app.use(bodyParser.urlencoded({ extended: false }))
 config.app.use(cors())
-
-// app.post("/api/register", (req, res) => {
-//   const { email, password } = req.body
-//   bcrypt.hash(password, saltRounds, (err,hash) => {
-//     const INSERT_USER_QUERY = `
-//     INSERT INTO "Users" (username, password) VALUES('${email}', '${hash}')
-//   `
-//     //config.db.query(INSERT_USER_QUERY)
-//     console.log(hash)
-//   })
-// })
+config.app.use(passport.initialize())
 
 config.app.post("/api/register", Register.registerProcedure)
 
