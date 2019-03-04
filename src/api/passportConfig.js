@@ -50,7 +50,8 @@ passport.deserializeUser((id, cb) => {
 })
 
 const authMethods = {
-  login: passportLogin
+  login: passportLogin,
+  findUser: loginQuery
 }
 
 module.exports = authMethods
