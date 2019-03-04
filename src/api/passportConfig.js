@@ -12,16 +12,15 @@ const loginQuery = `
   WHERE username=$1 OR email=$1
   `
 
-const passportAuthenticate = passport.use(
+const passportLogin = passport.use("login",
   new LocalStrategy((login, password, done) => {
   config.db.query(loginQuery, [login], (err, result) => {
     if (err) {
-      console.log("ERROR")
       return done('Error with username', err)
     }
     if (result.rows.length > 0) {
       const user = result.rows[0]
-      bcrypt.compare(password, user.password, function (err, res) {
+      bcrypt.compare(password, user.password, (err, res) => {
         if (res) {
           done(null, { id: user.id, username: user.username, email: user.email })
         } else {
@@ -51,7 +50,7 @@ passport.deserializeUser((id, cb) => {
 })
 
 const authMethods = {
-  auth: passportAuthenticate
+  login: passportLogin
 }
 
 module.exports = authMethods
