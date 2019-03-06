@@ -1,5 +1,4 @@
 const LocalStrategy = require("passport-local").Strategy
-const passport = require("passport")
 const config = require("./config")
 const bcrypt = require("bcrypt")
 
@@ -8,13 +7,12 @@ const loginQuery = `
   FROM "users"
   WHERE username=$1 OR email=$1
   `
-
-module.exports = function(passport) {
-  passport.use(new LocalStrategy((login, password, done) => {
-    // Match user 
+module.exports = passport => {
+  passport.use("local", new LocalStrategy((login, password, done) => {
+    //Match user 
     config.db.query(loginQuery, [login], (err, result) => {
       if (err) {
-        return done('Error with username', err)
+        return done("Error with username", err)
       }
       if (result.rows.length > 0) {
         const user = result.rows[0]

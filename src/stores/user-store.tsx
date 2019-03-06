@@ -44,10 +44,10 @@ export default class User {
         body: JSON.stringify({ login, password })
       }
     )
-      .then(res => res.json())
-      .then(data => {
-        this.fetchData = data
-      })
+    .then(res => res.json())
+    .then(data => {
+      this.fetchData = data
+    })
   }
 
   @action logMe = () => {

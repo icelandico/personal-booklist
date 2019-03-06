@@ -6,6 +6,7 @@ import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import { inject, observer } from "mobx-react"
 import User from "../../../../stores/user-store"
+import { Switch, Route, RouteComponentProps, Redirect } from "react-router-dom"
 
 interface RegisterFormProps extends WithStyles<typeof RegisterFormStyles> {
   userStore?: User
@@ -18,7 +19,8 @@ class RegisterForm extends React.Component<RegisterFormProps> {
     username: "",
     email: "",
     password: "",
-    repeatedPassword: ""
+    repeatedPassword: "",
+    logged: false
   };
 
   get initialState() {
@@ -43,7 +45,8 @@ class RegisterForm extends React.Component<RegisterFormProps> {
     if (data.userExists) {
       alert("User already exists!")
     } else {
-      this.props.userStore.loggedIn = true
+      this.setState({ logged: true })
+      //this.props.userStore.loggedIn = true
     }
   }
 
@@ -61,7 +64,15 @@ class RegisterForm extends React.Component<RegisterFormProps> {
     });
   }
 
+  handleRedirect = () => {
+    this.setState({ logged: true })
+  }
+
   render() {
+    if (this.state.logged) {
+      return <Redirect to="/login" />
+    }
+    
     return (
       <Paper elevation={10} className={this.classes.formContainer}>
         <Typography variant="title">Register</Typography>
@@ -151,6 +162,13 @@ class RegisterForm extends React.Component<RegisterFormProps> {
             className={this.classes.registerButton}
           >
             Register
+          </Button>
+          <Button
+            variant="contained"
+            className={this.classes.registerButton}
+            onClick={this.handleRedirect}
+          >
+            Redirect
           </Button>
         </form>
       </Paper>

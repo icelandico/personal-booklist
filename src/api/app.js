@@ -5,20 +5,22 @@ const Register = require("./signUp")
 const Login = require("./signIn")
 const config = require("./config")
 const passport = require("passport")
-
 require("./passportConfig")(passport)
-
-config.app.use(passport.initialize())
-config.app.use(passport.session())
 
 config.app.use(bodyParser.json())
 config.app.use(bodyParser.urlencoded({ extended: false }))
 
 config.app.use(cors())
 
+config.app.use(passport.initialize())
+config.app.use(passport.session())
+
 config.app.post("/api/register", Register.registerProcedure)
 
-config.app.post("/api/login", Login.loginProcedure)
+config.app.post("/api/login", (req, res, next) => passport.authenticate('local', {
+  successRedirect: res.send(),
+  failureRedirect: console.log('failure')
+})(req,res,next));
 
 config.app.listen(PORT, function () {
   console.log(`Example app listening on port ${PORT}!`)
