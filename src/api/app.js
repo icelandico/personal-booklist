@@ -5,12 +5,13 @@ const Register = require("./signUp")
 const Login = require("./signIn")
 const config = require("./config")
 const passport = require("passport")
-const LocalStrategy = require("passport-local").Strategy
+require("./passportConfig")(passport)
 
 config.app.use(bodyParser.json())
 config.app.use(bodyParser.urlencoded({ extended: false }))
 config.app.use(cors())
 config.app.use(passport.initialize())
+config.app.use(passport.session())
 
 config.app.post("/api/register", Register.registerProcedure)
 

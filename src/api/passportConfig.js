@@ -12,7 +12,7 @@ const loginQuery = `
   WHERE username=$1 OR email=$1
   `
 
-const passportLogin = (passport) => 
+module.exports = (passport) => 
   passport.use("login", new LocalStrategy((login, password, done) => {
     // Match user 
   config.db.query(loginQuery, [login], (err, result) => {
@@ -48,10 +48,3 @@ passport.deserializeUser((id, done) => {
     done(err, user)
   })
 })
-
-const authMethods = {
-  login: passportLogin,
-  findUser: loginQuery
-}
-
-module.exports = authMethods
