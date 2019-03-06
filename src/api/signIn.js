@@ -1,10 +1,15 @@
-const auth = require("./passportConfig")
 const passport = require("passport")
-const LocalStrategy = require("passport-local").Strategy
+const config = require("./config")
+
+config.app.use(passport.initialize())
+config.app.use(passport.session())
 
 const loginProcedure = async (request, response, next) => {
   const { login, password } = request.body
-  console.log("Loggin")
+  passport.authenticate("local", {
+    successRedirect: "/home",
+    failureRedirect: "/login"
+  })(request, response, next)
 }
 
 module.exports = { loginProcedure }
