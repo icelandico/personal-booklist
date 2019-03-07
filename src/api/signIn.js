@@ -4,7 +4,11 @@ const config = require("./config")
 const loginProcedure = (req, res) => {
   console.log(req.body)
   passport.authenticate("local", function(err, user, info) {
-    console.log(user)
+    console.log(info)
+    if (user) {
+      res.send({ message: "Logged"})
+    }
+
   })(req, res)
 }
   
