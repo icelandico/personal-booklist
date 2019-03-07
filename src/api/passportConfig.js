@@ -7,8 +7,13 @@ const loginQuery = `
   FROM "users"
   WHERE username=$1 OR email=$1
   `
+
 module.exports = passport => {
-  passport.use("local", new LocalStrategy((login, password, done) => {
+  passport.use("local", new LocalStrategy({
+    usernameField: "login",
+    passwordField: "password"
+  },
+    (login, password, done) => {
     //Match user 
     config.db.query(loginQuery, [login], (err, result) => {
       if (err) {

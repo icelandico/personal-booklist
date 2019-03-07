@@ -17,10 +17,7 @@ config.app.use(passport.session())
 
 config.app.post("/api/register", Register.registerProcedure)
 
-config.app.post("/api/login", (req, res, next) => passport.authenticate('local', {
-  successRedirect: res.send(),
-  failureRedirect: console.log('failure')
-})(req,res,next));
+config.app.post("/api/login", Login.loginProcedure)
 
 config.app.listen(PORT, function () {
   console.log(`Example app listening on port ${PORT}!`)
