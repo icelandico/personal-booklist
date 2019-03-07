@@ -69,9 +69,7 @@ class RegisterForm extends React.Component<RegisterFormProps> {
   }
 
   render() {
-    if (this.state.logged) {
-      return <Redirect to="/login" />
-    }
+
     
     return (
       <Paper elevation={10} className={this.classes.formContainer}>

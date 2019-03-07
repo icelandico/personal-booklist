@@ -6,6 +6,7 @@ import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import { inject, observer } from "mobx-react"
 import User from "../../../../stores/user-store"
+import { Redirect } from "react-router-dom"
 
 interface LoginFormProps extends WithStyles<typeof LoginFormStyles> {
   userStore?: User
@@ -17,7 +18,8 @@ class LoginForm extends React.Component<LoginFormProps> {
     showPassword: false,
     login: "",
     email: "",
-    password: ""
+    password: "",
+    logged: false
   }
 
   get initialState() {
@@ -39,9 +41,10 @@ class LoginForm extends React.Component<LoginFormProps> {
     const response = await this.props.userStore.signIn(login, password)
     const data = this.props.userStore.fetchData
     if (!data) {
-      alert("WRONG")
+      alert(data)
     } else {
-      alert(data.message)//this.props.userStore.loggedIn = true
+      this.setState({ logged: true })
+      this.props.userStore.loggedIn = true
     }
   }
 
@@ -60,6 +63,10 @@ class LoginForm extends React.Component<LoginFormProps> {
   }
 
   render() {
+    if (this.state.logged) {
+      return <Redirect to="/home" />
+    }
+
     return (
       <Paper elevation={10} className={this.classes.formContainer}>
         <Typography variant="title">Enter credentials</Typography>

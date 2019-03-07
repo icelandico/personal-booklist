@@ -1,15 +1,22 @@
 const passport = require("passport")
-const config = require("./config")
 
-const loginProcedure = (req, res) => {
-  console.log(req.body)
-  passport.authenticate("local", function(err, user, info) {
-    console.log(info)
+loginProcedure = (req, res) => {
+  passport.authenticate("local", (err, user, info) => {
     if (user) {
-      res.send({ message: "Logged"})
+      handleSuccess(user)
+    } else {
+      handleError(res, info)
     }
 
   })(req, res)
+}
+
+handleError = (response, message) => {
+  response.send({ message: "Error"})
+}
+
+handleSuccess = (userData) => {
+  response.send(userData)
 }
   
 module.exports = { loginProcedure }
