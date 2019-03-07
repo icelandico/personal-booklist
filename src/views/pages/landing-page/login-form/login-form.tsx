@@ -38,10 +38,10 @@ class LoginForm extends React.Component<LoginFormProps> {
     const { login, password } = this.state
     const response = await this.props.userStore.signIn(login, password)
     const data = this.props.userStore.fetchData
-    if (data.userExists) {
-      alert("Wrong credentials!")
+    if (!data) {
+      alert("WRONG")
     } else {
-      this.props.userStore.loggedIn = true
+      alert(data.message)//this.props.userStore.loggedIn = true
     }
   }
 

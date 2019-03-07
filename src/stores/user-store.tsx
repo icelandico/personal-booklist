@@ -45,7 +45,9 @@ export default class User {
       }
     )
     .then(res => res.json())
+    .catch(err => alert(err))
     .then(data => {
+      console.log(data)
       this.fetchData = data
     })
   }
