@@ -18,7 +18,7 @@ class Navigation extends React.Component<NavigationProps> {
   }
 
   render() {
-    const { userStore }: any = this.props.userStore.fetchData
+    const userStore = this.props.userStore.fetchData || null
 
     return (
       <AppBar 
