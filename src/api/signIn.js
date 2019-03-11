@@ -5,7 +5,8 @@ loginProcedure = (req, res) => {
     if (user) {
       handleSuccess(user)
     } else {
-      handleError(res, info)
+      console.log(info)
+      //handleError(res, info)
     }
 
   })(req, res)

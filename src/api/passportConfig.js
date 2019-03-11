@@ -17,7 +17,7 @@ module.exports = passport => {
     //Match user 
     config.db.query(loginQuery, [login], (err, result) => {
       if (err) {
-        return done("Error with username", err)
+        return done({ message: "Error with connection to database" }, err)
       }
       if (result.rows.length > 0) {
         const user = result.rows[0]
