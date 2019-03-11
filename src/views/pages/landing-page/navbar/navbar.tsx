@@ -34,21 +34,24 @@ class Navigation extends React.Component<NavigationProps> {
         </Typography>
       </Toolbar>
         <Toolbar className={this.classes.actionButtonsContainer}>
+        {
+          !userStore ?
+          <>
           <Button
             variant="contained"
             className={classNames(this.classes.actionButton, this.classes.linkButton)}
           >
-          <Link to="/login">
-          Login
-          </Link>
+            <Link to="/login">
+              Login
+            </Link>
           </Button>
           <Button
             variant="contained"
             className={classNames(this.classes.actionButton, this.classes.linkButton)}
-          >
-          <Link to="/register">
-            Register
-          </Link>
+            >
+            <Link to="/register">
+              Register
+            </Link>
           </Button>
           <Button
             variant="contained"
@@ -58,6 +61,14 @@ class Navigation extends React.Component<NavigationProps> {
             About project
           </Link>
           </Button>
+          </>
+          :
+          <Button
+            variant="contained"
+          >
+            Hello User
+          </Button>
+        }
         </Toolbar>
       </AppBar>
     )
