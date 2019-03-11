@@ -1,11 +1,10 @@
 import * as React from 'react'
-import { AppBar, Typography, Toolbar, IconButton, Button } from "@material-ui/core/"
+import { AppBar, Typography, Toolbar, Button } from "@material-ui/core/"
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { NavStyles } from "./navbar-styles"
 import { inject, observer } from "mobx-react"
 import User from "../../../../stores/user-store"
 import { Link } from "react-router-dom"
-import HomePage from "./../../home/home-page"
 import classNames from "classnames"
 interface NavigationProps extends WithStyles<typeof NavStyles> {
   userStore?: User
@@ -15,11 +14,11 @@ interface NavigationProps extends WithStyles<typeof NavStyles> {
 class Navigation extends React.Component<NavigationProps> {
   
   get classes() {
-    return this.props.classes;
+    return this.props.classes
   }
 
   render() {
-    const { userStore }: any = this.props;
+    const { userStore }: any = this.props.userStore.fetchData
 
     return (
       <AppBar 
@@ -61,7 +60,7 @@ class Navigation extends React.Component<NavigationProps> {
           </Button>
         </Toolbar>
       </AppBar>
-    );
+    )
   }
 }
 
