@@ -63,9 +63,9 @@ class LoginForm extends React.Component<LoginFormProps> {
   }
 
   render() {
-    if (this.state.logged) {
-      return <Redirect to="/home" />
-    }
+    // if (this.state.logged) {
+    //   return <Redirect to="/home" />
+    // }
 
     return (
       <Paper elevation={10} className={this.classes.formContainer}>

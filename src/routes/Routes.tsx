@@ -25,7 +25,7 @@ class Routes extends React.Component<RoutesInterface, RoutesState> {
     return (
       <Switch>
         <Route path="/home" component={HomePage} />
-        <Redirect to="/home" />
+        {/* <Redirect to="/home" /> */}
       </Switch>
     )
   }

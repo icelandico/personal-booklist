@@ -10,7 +10,7 @@ interface HomePageProps extends WithStyles<typeof HomePageStyles> {
 class HomePage extends React.Component<HomePageProps> {
 
   get classes() {
-    return this.props.classes;
+    return this.props.classes
   }
 
   render() {
