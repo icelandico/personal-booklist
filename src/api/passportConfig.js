@@ -49,7 +49,7 @@ module.exports = passport => {
   passport.deserializeUser((user, done) => {
     config.db.query(loginQuery, [login], (err, result) => {
       if (result.rows.length > 0) {
-        done(null, user.id)
+        done(null, user)
       } else {
         done(null, false)
       }

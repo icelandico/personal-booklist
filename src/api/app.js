@@ -14,6 +14,16 @@ config.app.use(bodyParser.urlencoded({ extended: false }))
 
 config.app.use(cors())
 
+config.app.use(
+  session({
+    secret: 'keyboard cat',
+    cookie: { maxAge: 60000 },
+    rolling: true,
+    resave: true,
+    saveUninitialized: false
+  })
+);
+
 config.app.use(passport.initialize())
 config.app.use(passport.session())
 
