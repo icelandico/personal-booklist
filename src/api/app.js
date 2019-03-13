@@ -16,11 +16,10 @@ config.app.use(cors())
 
 config.app.use(
   session({
-    secret: 'keyboard cat',
-    cookie: { maxAge: 60000 },
+    secret: "keyboard cat",
     rolling: true,
-    resave: true,
-    saveUninitialized: false
+    resave: false,
+    // saveUninitialized: false
   })
 );
 

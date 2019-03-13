@@ -43,6 +43,7 @@ module.exports = passport => {
   }))
 
   passport.serializeUser((user, done) => {
+    console.log("SERIALIZED")
     done(null, user.id)
   })
 
