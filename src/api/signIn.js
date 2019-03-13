@@ -1,4 +1,8 @@
 const passport = require("passport")
+const config = require("./config");
+
+config.app.use(passport.initialize());
+config.app.use(passport.session());
 
 loginProcedure = (req, res) => {
   passport.authenticate("local", (err, user, info) => {

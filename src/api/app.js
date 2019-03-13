@@ -5,6 +5,8 @@ const Register = require("./signUp")
 const Login = require("./signIn")
 const config = require("./config")
 const passport = require("passport")
+const session = require("express-session")
+
 require("./passportConfig")(passport)
 
 config.app.use(bodyParser.json())

@@ -25,6 +25,7 @@ export default class User {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body: JSON.stringify({ username, email, password })
       }
     )

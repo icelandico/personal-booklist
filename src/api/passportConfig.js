@@ -1,6 +1,10 @@
 const LocalStrategy = require("passport-local").Strategy
 const config = require("./config")
 const bcrypt = require("bcrypt")
+const passport = require("passport")
+
+config.app.use(passport.initialize())
+config.app.use(passport.session())
 
 const loginQuery = `
   SELECT * 
@@ -42,13 +46,13 @@ module.exports = passport => {
     done(null, user.id)
   })
 
-  passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-      done(err, user)
+  passport.deserializeUser((user, done) => {
+    config.db.query(loginQuery, [login], (err, result) => {
+      if (result.rows.length > 0) {
+        done(null, user.id)
+      } else {
+        done(null, false)
+      }
     })
   })
-
 }
-
-
-
