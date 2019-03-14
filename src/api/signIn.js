@@ -3,20 +3,17 @@ const passport = require("passport")
 loginProcedure = (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (user) {
-      req.logIn(user, function(err) {
-        if (err) return next(err)
-        handleSuccess(res, user)
-        console.log(req.session)
+      req.logIn(user, (err) => {
+        return err ? err : handleSuccess(res, user)
       })
     } else {
-      console.log(info)
       handleError(res, info)
     }
   })(req, res, next)
 }
 
 handleError = (response, message) => {
-  response.send({ message: "Error"})
+  response.send({ message })
 }
 
 handleSuccess = (response, userData) => {

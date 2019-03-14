@@ -8,6 +8,12 @@ const loginQuery = `
   WHERE username=$1 OR email=$1
   `
 
+const deserializeQuery = `
+  SELECT * 
+  FROM "users"
+  WHERE id=$1
+  `
+
 module.exports = passport => {
   passport.use("local", new LocalStrategy({
     usernameField: "login",
@@ -39,15 +45,17 @@ module.exports = passport => {
   }))
   
   passport.serializeUser((user, done) => {
-    done(null, user)
+    console.log("SERIALIZING")
+    done(null, user.id)
   })
 
-  passport.deserializeUser((user, done) => {
-    config.db.query(loginQuery, [login], (err, result) => {
+  passport.deserializeUser((id, done) => {
+    console.log("DESERIALIZING")
+    config.db.query(deserializeQuery, [id], (err, result) => {
       if (result.rows.length > 0) {
-        done(null, user)
+        done(err, user)
       } else {
-        done(null, false)
+        done(err, false)
       }
     })
   })

@@ -12,8 +12,9 @@ require("./passportConfig")(passport)
 config.app.use(bodyParser.json())
 config.app.use(bodyParser.urlencoded({ extended: false }))
 
-config.app.use(cors())
+config.app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
 
+config.app.use(passport.initialize())
 config.app.use(
   session({
     secret: config.secret,
@@ -21,8 +22,6 @@ config.app.use(
     saveUninitialized: true
   })
 )
-
-config.app.use(passport.initialize())
 config.app.use(passport.session())
 
 config.app.post("/api/register", Register.registerProcedure)
