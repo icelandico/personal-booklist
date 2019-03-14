@@ -40,7 +40,7 @@ export default class User {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          // "Access-Control-Allow-Origin": "*"
         },
         credentials: 'include',
         body: JSON.stringify({ login, password })
