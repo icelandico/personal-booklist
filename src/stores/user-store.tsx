@@ -25,7 +25,6 @@ export default class User {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: 'include',
         body: JSON.stringify({ username, email, password })
       }
     )
@@ -41,7 +40,9 @@ export default class User {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
         },
+        credentials: 'include',
         body: JSON.stringify({ login, password })
       }
     )
