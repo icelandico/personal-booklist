@@ -1,15 +1,18 @@
 const passport = require("passport")
 
-loginProcedure = (req, res) => {
+loginProcedure = (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (user) {
-      console.log("Session: ", req.session)
-      handleSuccess(res, user)
+      req.logIn(user, function(err) {
+        if (err) return next(err)
+        handleSuccess(res, user)
+        console.log(req.session)
+      })
     } else {
       console.log(info)
       handleError(res, info)
     }
-  })(req, res)
+  })(req, res, next)
 }
 
 handleError = (response, message) => {

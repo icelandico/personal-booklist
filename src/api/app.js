@@ -16,12 +16,11 @@ config.app.use(cors())
 
 config.app.use(
   session({
-    secret: "keyboard cat",
-    rolling: true,
+    secret: config.secret,
     resave: false,
-    // saveUninitialized: false
+    saveUninitialized: true
   })
-);
+)
 
 config.app.use(passport.initialize())
 config.app.use(passport.session())

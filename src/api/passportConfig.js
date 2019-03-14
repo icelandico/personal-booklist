@@ -1,10 +1,6 @@
 const LocalStrategy = require("passport-local").Strategy
 const config = require("./config")
 const bcrypt = require("bcrypt")
-const passport = require("passport")
-
-config.app.use(passport.initialize())
-config.app.use(passport.session())
 
 const loginQuery = `
   SELECT * 
@@ -41,10 +37,9 @@ module.exports = passport => {
       }
     })
   }))
-
+  
   passport.serializeUser((user, done) => {
-    console.log("SERIALIZED")
-    done(null, user.id)
+    done(null, user)
   })
 
   passport.deserializeUser((user, done) => {
