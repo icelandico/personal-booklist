@@ -24,7 +24,7 @@ class LoggedInNavbar extends React.Component<NavigationProps> {
       <Button
         variant="contained"
       >
-        Hello User {userStore.username}
+        Hello {userStore.username}
       </Button>
     )
   }

@@ -60,7 +60,7 @@ class LoggedOutNavbar extends React.Component<NavigationProps> {
           </Link>
           </Button>
           </>
-        }
+          
         </Toolbar>
       </AppBar>
     )
