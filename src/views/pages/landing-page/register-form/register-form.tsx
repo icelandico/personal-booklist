@@ -20,7 +20,7 @@ class RegisterForm extends React.Component<RegisterFormProps> {
     email: "",
     password: "",
     repeatedPassword: "",
-    logged: false
+    registered: false
   };
 
   get initialState() {
@@ -65,11 +65,13 @@ class RegisterForm extends React.Component<RegisterFormProps> {
   }
 
   handleRedirect = () => {
-    this.setState({ logged: true })
+    this.setState({ registered: true })
   }
 
   render() {
-
+    if (this.state.registered) {
+      return <Redirect to="/login" />
+    }
     
     return (
       <Paper elevation={10} className={this.classes.formContainer}>
@@ -107,7 +109,6 @@ class RegisterForm extends React.Component<RegisterFormProps> {
             margin="normal"
             name="password"
             value={this.state.password}
-            // onChange={this.handleChange('password')}
             onChange={e => this.changeCredentials(e)}
             InputProps={{
               endAdornment: (
