@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { AppBar, Typography, Toolbar, Button } from "@material-ui/core/"
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
-import { NavStyles } from "./navbar-styles"
+import { NavStyles } from "../navbar-styles"
 import { inject, observer } from "mobx-react"
-import User from "../../../../stores/user-store"
+import User from "../../../../../stores/user-store"
 import { Link } from "react-router-dom"
 import classNames from "classnames"
 interface NavigationProps extends WithStyles<typeof NavStyles> {
