@@ -63,7 +63,11 @@ class Navigation extends React.Component<NavigationProps> {
           </Button>
           </>
           :
-
+          <Button
+            variant="contained"
+          >
+            Hello User {userStore.username}
+          </Button>
         }
         </Toolbar>
       </AppBar>
