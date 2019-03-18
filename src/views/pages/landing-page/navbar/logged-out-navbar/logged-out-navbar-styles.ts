@@ -1,6 +1,6 @@
 import { createStyles } from "@material-ui/core";
 
-export const NavStyles = () =>
+export const LoggedOutNavbarStyles = () =>
   createStyles({
     formContainer: {
       position: "absolute",

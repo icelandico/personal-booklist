@@ -6,6 +6,9 @@ import { inject, observer } from "mobx-react"
 import User from "../../../../stores/user-store"
 import { Link } from "react-router-dom"
 import classNames from "classnames"
+import LoggedOutNavbar from "./logged-out-navbar/logged-out-navbar"
+import LoggedInNavbar from "./logged-in-navbar/logged-in-navbar"
+
 interface NavigationProps extends WithStyles<typeof NavStyles> {
   userStore?: User
 }
@@ -36,34 +39,9 @@ class Navigation extends React.Component<NavigationProps> {
         <Toolbar className={this.classes.actionButtonsContainer}>
         {
           !userStore ?
-          <>
-          <Button
-            variant="contained"
-            className={classNames(this.classes.actionButton, this.classes.linkButton)}
-          >
-            <Link to="/login">
-              Login
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            className={classNames(this.classes.actionButton, this.classes.linkButton)}
-            >
-            <Link to="/register">
-              Register
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            className={classNames(this.classes.actionButton, this.classes.linkButton)}
-          >
-          <Link to="/about">
-            About project
-          </Link>
-          </Button>
-          </>
+          <LoggedOutNavbar />
           :
-
+          <LoggedInNavbar />
         }
         </Toolbar>
       </AppBar>

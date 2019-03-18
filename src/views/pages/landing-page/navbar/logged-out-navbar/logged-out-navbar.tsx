@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { AppBar, Typography, Toolbar, Button } from "@material-ui/core/"
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
-import { NavStyles } from "../navbar-styles"
+import { LoggedOutNavbarStyles } from "./logged-out-navbar-styles"
 import { inject, observer } from "mobx-react"
 import User from "../../../../../stores/user-store"
 import { Link } from "react-router-dom"
 import classNames from "classnames"
-interface NavigationProps extends WithStyles<typeof NavStyles> {
+interface NavigationProps extends WithStyles<typeof LoggedOutNavbarStyles> {
   userStore?: User
 }
 @inject("userStore")
 @observer
-class Navigation extends React.Component<NavigationProps> {
+class LoggedOutNavbar extends React.Component<NavigationProps> {
   
   get classes() {
     return this.props.classes
@@ -34,8 +34,6 @@ class Navigation extends React.Component<NavigationProps> {
         </Typography>
       </Toolbar>
         <Toolbar className={this.classes.actionButtonsContainer}>
-        {
-          !userStore ?
           <>
           <Button
             variant="contained"
@@ -62,12 +60,6 @@ class Navigation extends React.Component<NavigationProps> {
           </Link>
           </Button>
           </>
-          :
-          <Button
-            variant="contained"
-          >
-            Hello User {userStore.username}
-          </Button>
         }
         </Toolbar>
       </AppBar>
@@ -75,4 +67,4 @@ class Navigation extends React.Component<NavigationProps> {
   }
 }
 
-export default withStyles(NavStyles)(Navigation)
+export default withStyles(LoggedOutNavbarStyles)(LoggedOutNavbar)
