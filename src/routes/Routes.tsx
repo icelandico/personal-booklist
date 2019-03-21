@@ -23,8 +23,8 @@ class Routes extends React.Component<RoutesInterface, RoutesState> {
   authorizedRoutes = () => {
     return (
       <Switch>
-        <Route path="/home" component={HomePage} />
-        <Route path="/search" component={SearchPage} />
+        <Route exact path="/home" component={HomePage} />
+        <Route path="/home/search" component={SearchPage} />
         {/* <Redirect to="/home" /> */}
       </Switch>
     );
