@@ -9,7 +9,7 @@ interface LandingPageProps extends WithStyles<typeof LandingPageStyles>{
 class LandingPage extends React.Component<LandingPageProps> {
 
   get classes() {
-    return this.props.classes;
+    return this.props.classes
   }
 
   render() {

@@ -8,7 +8,7 @@ interface MainPageProps extends WithStyles<typeof MainPageStyles> {
 class MainPage extends React.Component<MainPageProps> {
 
   get classes() {
-    return this.props.classes;
+    return this.props.classes
   }
 
   render() {

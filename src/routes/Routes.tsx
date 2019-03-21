@@ -1,14 +1,13 @@
 import * as React from "react"
 import { Switch, Route, Redirect, RouteComponentProps } from "react-router-dom"
 import { withRouter } from "react-router"
-import App from "../views/pages/entrypoint/Main"
 import HomePage from "../views/pages/home/home-page"
-import LandingPage from "../views/pages/landing-page/landing-page"
 import RegisterForm from "../views/pages/landing-page/register-form/register-form"
 import LoginForm from "../views/pages/landing-page/login-form/login-form"
 import AboutPage from "../views/pages/landing-page/about-page/about-page"
 import { inject, observer } from "mobx-react"
 import User from "../stores/user-store"
+import SearchPage from "../views/pages/home/search-site/search-site-page"
 
 interface RoutesInterface extends RouteComponentProps<any> {
   userStore?: User
@@ -25,9 +24,10 @@ class Routes extends React.Component<RoutesInterface, RoutesState> {
     return (
       <Switch>
         <Route path="/home" component={HomePage} />
+        <Route path="/search" component={SearchPage} />
         {/* <Redirect to="/home" /> */}
       </Switch>
-    )
+    );
   }
 
   notAuthorizedRoutes = () => {
