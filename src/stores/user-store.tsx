@@ -1,4 +1,5 @@
 import { observable, action } from "mobx"
+import { userInfo } from "os";
 
 interface UserInterface {
   username: string,
@@ -10,9 +11,9 @@ export default class User {
 
   @observable users: UserInterface[] = []
 
-  @observable loggedIn: boolean = false
+  @observable loggedIn: boolean = true
 
-  @observable fetchData: any = ""
+  @observable fetchData: any = {email: "userInfo.pl", id: 24, username: "maikel"}
 
   @action addUser = (newUser: any) => {
     this.users.push(newUser)
