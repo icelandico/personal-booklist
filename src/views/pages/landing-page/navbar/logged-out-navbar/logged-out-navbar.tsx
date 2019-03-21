@@ -21,48 +21,34 @@ class LoggedOutNavbar extends React.Component<NavigationProps> {
     const userStore = this.props.userStore.fetchData || null
 
     return (
-      <AppBar 
-        position="absolute"
-        className={this.classes.appBar}
-      >
-      <Toolbar>
-        <Typography
-          variant="h4"
-          className={this.classes.navbarTitle}
+      <Toolbar className={this.classes.actionButtonsContainer}>
+      
+        <Button
+          variant="contained"
+          className={classNames(this.classes.actionButton, this.classes.linkButton)}
         >
-          Book tracker
-        </Typography>
-      </Toolbar>
-        <Toolbar className={this.classes.actionButtonsContainer}>
-          <>
-          <Button
-            variant="contained"
-            className={classNames(this.classes.actionButton, this.classes.linkButton)}
-          >
-            <Link to="/login">
-              Login
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            className={classNames(this.classes.actionButton, this.classes.linkButton)}
-            >
-            <Link to="/register">
-              Register
-            </Link>
-          </Button>
-          <Button
-            variant="contained"
-            className={classNames(this.classes.actionButton, this.classes.linkButton)}
-          >
-          <Link to="/about">
-            About project
+          <Link to="/login">
+            Login
           </Link>
-          </Button>
-          </>
-          
-        </Toolbar>
-      </AppBar>
+        </Button>
+        <Button
+          variant="contained"
+          className={classNames(this.classes.actionButton, this.classes.linkButton)}
+          >
+          <Link to="/register">
+            Register
+          </Link>
+        </Button>
+        <Button
+          variant="contained"
+          className={classNames(this.classes.actionButton, this.classes.linkButton)}
+        >
+        <Link to="/about">
+          About project
+        </Link>
+        </Button>
+        
+      </Toolbar>
     )
   }
 }
