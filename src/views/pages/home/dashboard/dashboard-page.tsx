@@ -13,11 +13,11 @@ class DashboardPage extends React.Component<MainPageProps> {
 
   render() {
     return (
-      <div>
-        TEST
+      <div className={this.classes.mainPage}>
+        DASHBOARD
       </div>
     )
   }
 }
 
-export default withStyles(DashboardPageStyles)(DashboardPage);
+export default withStyles(DashboardPageStyles)(DashboardPage)

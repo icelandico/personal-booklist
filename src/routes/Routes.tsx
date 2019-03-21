@@ -8,6 +8,7 @@ import AboutPage from "../views/pages/landing-page/about-page/about-page"
 import { inject, observer } from "mobx-react"
 import User from "../stores/user-store"
 import SearchPage from "../views/pages/home/search-site/search-site-page"
+import DashboardPage from "../views/pages/home/dashboard/dashboard-page"
 
 interface RoutesInterface extends RouteComponentProps<any> {
   userStore?: User
@@ -23,7 +24,7 @@ class Routes extends React.Component<RoutesInterface, RoutesState> {
   authorizedRoutes = () => {
     return (
       <Switch>
-        <Route exact path="/home" component={HomePage} />
+        <Route exact path="/home" component={DashboardPage} />
         <Route path="/home/search" component={SearchPage} />
         {/* <Redirect to="/home" /> */}
       </Switch>
