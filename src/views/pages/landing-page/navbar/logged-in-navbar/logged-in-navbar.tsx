@@ -35,7 +35,9 @@ class LoggedInNavbar extends React.Component<NavigationProps> {
           variant="contained"
           className={classNames(this.classes.actionButton, this.classes.linkButton)}
         >
-          Search
+          <Link to="/home/search">
+            Search
+          </Link>
         <SearchIcon  />
         </Button>
         <Typography
