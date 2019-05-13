@@ -1,4 +1,5 @@
 ## Booklist Tracker
+*Not finished*
 ### Track your book history. What did You read, when, how long does it take.
 
 ____
